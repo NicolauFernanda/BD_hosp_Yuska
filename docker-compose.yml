@@ -1,0 +1,24 @@
+services:
+  hospitaldb:
+    image: ghcr.io/dbsystel/postgresql-partman:17-5
+    container_name: hospitaldb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: a
+      POSTGRES_DB: hospitaldb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - tools
+
+volumes:
+  pg_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  tools:
+    external: true
